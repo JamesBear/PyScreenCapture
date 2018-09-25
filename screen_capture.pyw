@@ -43,11 +43,13 @@ def screenshot_all():
     print('screenshot all')
     pic = pyautogui.screenshot()
     time_str = datetime.now().strftime('%Y%m%d%H%M%S.%f')
-    file_name = '{}{}.png'.format(SAVE_DIR, time_str)
+    file_name = '{}{}.jpg'.format(SAVE_DIR, time_str)
 
-    pic.save(file_name)
-    print('   saved to {}'.format(file_name))
     play_shutter_sound()
+    pic.save(file_name, quality=95)
+    pic.close()
+    print(pic)
+    print('   saved to {}'.format(file_name))
 
 if __name__ == '__main__':
     keyboard.add_hotkey('ctrl+f12', screenshot_all, args=())
