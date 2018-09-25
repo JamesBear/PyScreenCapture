@@ -46,13 +46,14 @@ def screenshot_all():
     file_name = '{}{}.jpg'.format(SAVE_DIR, time_str)
 
     play_shutter_sound()
-    pic.save(file_name, quality=95)
+    pic.save(file_name, quality=90)
     pic.close()
     print(pic)
     print('   saved to {}'.format(file_name))
 
 if __name__ == '__main__':
     keyboard.add_hotkey('ctrl+f12', screenshot_all, args=())
+    keyboard.add_hotkey('alt+f12', screenshot_all, args=())
 
     # Block forever, like `while True`.
     keyboard.wait()
