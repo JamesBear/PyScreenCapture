@@ -45,7 +45,11 @@ def screenshot_all():
     time_str = datetime.now().strftime('%Y%m%d%H%M%S.%f')
     file_name = '{}{}.jpg'.format(SAVE_DIR, time_str)
 
-    play_shutter_sound()
+    try:
+        play_shutter_sound()
+    except OSError as e:
+        print('Error when executeing play_shutter_sound, error stack = ')
+        print(e)
     pic.save(file_name, quality=90)
     pic.close()
     print(pic)
