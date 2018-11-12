@@ -64,6 +64,14 @@ if __name__ == '__main__':
     keyboard.add_hotkey('windows+alt+f12', screenshot_all, args=())
     keyboard.add_hotkey('windows+l+ctrl+f12', screenshot_all, args=())
     keyboard.add_hotkey('windows+l+alt+f12', screenshot_all, args=())
+    keyboard.add_hotkey('ctrl+f11', screenshot_all, args=())
+    keyboard.add_hotkey('alt+f11', screenshot_all, args=())
+    keyboard.add_hotkey('l+ctrl+f11', screenshot_all, args=())
+    keyboard.add_hotkey('l+alt+f11', screenshot_all, args=())
+    keyboard.add_hotkey('windows+ctrl+f11', screenshot_all, args=())
+    keyboard.add_hotkey('windows+alt+f11', screenshot_all, args=())
+    keyboard.add_hotkey('windows+l+ctrl+f11', screenshot_all, args=())
+    keyboard.add_hotkey('windows+l+alt+f11', screenshot_all, args=())
     #keyboard.hook(lambda e: print(keyboard._pressed_events))
 
     # Block forever, like `while True`.
