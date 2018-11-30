@@ -55,24 +55,30 @@ def screenshot_all():
     print(pic)
     print('   saved to {}'.format(file_name))
 
+def try_clear_jam(e):
+    """Clear key jam if windows + L is pressed.
+    """
+    stash = False
+    for key,value in keyboard._pressed_events.items():
+        #print(key, value, type(value), end='; ')
+        # L, left windows or right windows
+        if key == 25 or key == 91 or key == 92:
+            stash = True
+    #print('')
+    if stash:
+        keyboard.stash_state()
+    #for key,value in keyboard._pressed_events.items():
+    #    print(key, value, type(value), end='; ')
+    #print('')
+
 if __name__ == '__main__':
     keyboard.add_hotkey('ctrl+f12', screenshot_all, args=())
     keyboard.add_hotkey('alt+f12', screenshot_all, args=())
-    keyboard.add_hotkey('l+ctrl+f12', screenshot_all, args=())
-    keyboard.add_hotkey('l+alt+f12', screenshot_all, args=())
-    keyboard.add_hotkey('windows+ctrl+f12', screenshot_all, args=())
-    keyboard.add_hotkey('windows+alt+f12', screenshot_all, args=())
-    keyboard.add_hotkey('windows+l+ctrl+f12', screenshot_all, args=())
-    keyboard.add_hotkey('windows+l+alt+f12', screenshot_all, args=())
     keyboard.add_hotkey('ctrl+f11', screenshot_all, args=())
     keyboard.add_hotkey('alt+f11', screenshot_all, args=())
-    keyboard.add_hotkey('l+ctrl+f11', screenshot_all, args=())
-    keyboard.add_hotkey('l+alt+f11', screenshot_all, args=())
-    keyboard.add_hotkey('windows+ctrl+f11', screenshot_all, args=())
-    keyboard.add_hotkey('windows+alt+f11', screenshot_all, args=())
-    keyboard.add_hotkey('windows+l+ctrl+f11', screenshot_all, args=())
-    keyboard.add_hotkey('windows+l+alt+f11', screenshot_all, args=())
     #keyboard.hook(lambda e: print(keyboard._pressed_events))
+
+    keyboard.hook(try_clear_jam)
 
     # Block forever, like `while True`.
     keyboard.wait()
