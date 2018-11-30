@@ -59,26 +59,23 @@ def try_clear_jam(e):
     """Clear key jam if windows + L is pressed.
     """
     stash = False
-    for key,value in keyboard._pressed_events.items():
-        #print(key, value, type(value), end='; ')
+    for key in keyboard._pressed_events:
         # L, left windows or right windows
         if key == 25 or key == 91 or key == 92:
             stash = True
-    #print('')
+            break
     if stash:
         keyboard.stash_state()
-    #for key,value in keyboard._pressed_events.items():
-    #    print(key, value, type(value), end='; ')
-    #print('')
 
 if __name__ == '__main__':
+    keyboard.hook(try_clear_jam)
+    
     keyboard.add_hotkey('ctrl+f12', screenshot_all, args=())
     keyboard.add_hotkey('alt+f12', screenshot_all, args=())
     keyboard.add_hotkey('ctrl+f11', screenshot_all, args=())
     keyboard.add_hotkey('alt+f11', screenshot_all, args=())
     #keyboard.hook(lambda e: print(keyboard._pressed_events))
 
-    keyboard.hook(try_clear_jam)
 
     # Block forever, like `while True`.
     keyboard.wait()
